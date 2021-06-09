@@ -1,0 +1,25 @@
+{
+    "name": "devghor/tik-cms-api",
+    "description": "TikCmsApi for TikCms",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hafijur Rahman",
+            "email": "hafij.to@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Devghor\\TikCmsApi\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Devghor\\TikCmsApi\\Providers\\TikCmsApiServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
