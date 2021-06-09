@@ -23,7 +23,7 @@ git clonehttps://github.com/devghor/tik-cms-api.git
 **Add Provider**
 
 ```php
-Devghor\TikCmsApi\Providers\BaseReviewServiceProvider::class
+Devghor\TikCmsApi\Providers\TikCmsApiServiceProvider::class
 ```
 ```
 composer dump-autoload
