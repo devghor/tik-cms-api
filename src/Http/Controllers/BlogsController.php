@@ -278,6 +278,21 @@ class BlogsController extends Controller
         }
     }
 
+    public function updateImage(Request $request)
+    {
+
+        $blog = Blog::where('id', request()->get('blog_id'))
+            ->update([
+                'featured_image'=> $request->data['image_src']
+            ]);
+        if($blog) {
+            return response()->json(['message'=>'Blog image updated.']);
+        }
+        else {
+            return response()->json(['message'=>'Something wrong!']);
+        }
+    }
+
 
 
     public function restore()
@@ -461,6 +476,44 @@ class BlogsController extends Controller
         }
         else {
             return response()->json(['data' => "Category not found"]);
+        }
+    }
+
+    public function getAllBlogWithLanguage() {
+
+        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url')
+            ->where('status', 'published')
+            ->get();
+
+        $blogs = $allBlogs->groupBy('language');
+        if($blogs) {
+            $data = [
+                'list' => $blogs
+            ];
+            return response()->json(['data' => $data]);
+        }
+        else{
+            return response()->json(['data' => "No blogs found"]);
+        }
+    }
+
+    public function getAllBlogWithLanguageAndCategory() {
+
+        $category = BlogCategories::where('category_name', request()->get('category_name'))->first();
+        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url')
+            ->where('category', $category->id)
+            ->where('status', 'published')
+            ->get();
+
+        $blogs = $allBlogs->groupBy('language');
+        if($blogs) {
+            $data = [
+                'list' => $blogs
+            ];
+            return response()->json(['data' => $data]);
+        }
+        else{
+            return response()->json(['data' => "No blogs found"]);
         }
     }
 }
