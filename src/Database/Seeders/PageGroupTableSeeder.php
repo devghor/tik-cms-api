@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Database\Seeders;
+namespace Devghor\TikCmsApi\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Tikweb\TikCmsApi\Models\PageGroup;
+use Devghor\TikCmsApi\Models\PageGroup;
 
 class PageGroupTableSeeder  extends Seeder
 {

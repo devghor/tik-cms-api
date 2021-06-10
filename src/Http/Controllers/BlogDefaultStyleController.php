@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Tikweb\TikCmsApi\Models\BlogDefaultStyle;
+use Devghor\TikCmsApi\Models\BlogDefaultStyle;
 
 class BlogDefaultStyleController extends Controller
 {

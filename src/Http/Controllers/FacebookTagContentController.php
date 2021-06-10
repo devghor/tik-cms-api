@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 
-use Tikweb\TikCmsApi\Models\FacebookTagContent;
+use Devghor\TikCmsApi\Models\FacebookTagContent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Tikweb\TikCmsApi\Models\PageGroup;
-use Tikweb\TikCmsApi\Models\WebPage;
+use Devghor\TikCmsApi\Models\PageGroup;
+use Devghor\TikCmsApi\Models\WebPage;
 
 class PageGroupController extends Controller
 {

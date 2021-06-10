@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Tikweb\TikCmsApi\Models\BlogCategories;
-use Tikweb\TikCmsApi\Models\Blog;
-use Tikweb\TikCmsApi\Models\BlogCategoryNameTranslations;
+use Devghor\TikCmsApi\Models\BlogCategories;
+use Devghor\TikCmsApi\Models\Blog;
+use Devghor\TikCmsApi\Models\BlogCategoryNameTranslations;
 
 class BlogCategoryController extends Controller
 {

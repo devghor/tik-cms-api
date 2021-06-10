@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
-use Tikweb\TikCmsApi\Models\MetaTag;
-use Tikweb\TikCmsApi\Models\MetaTagContent;
+use Devghor\TikCmsApi\Models\MetaTag;
+use Devghor\TikCmsApi\Models\MetaTagContent;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

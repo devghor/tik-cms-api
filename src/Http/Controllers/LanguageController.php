@@ -1,9 +1,9 @@
 <?php
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Tikweb\TikCmsApi\Models\Language;
+use Devghor\TikCmsApi\Models\Language;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller

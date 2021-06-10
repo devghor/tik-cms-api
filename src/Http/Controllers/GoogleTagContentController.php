@@ -1,7 +1,7 @@
 <?php
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
-use Tikweb\TikCmsApi\Models\GoogleTagContent;
+namespace Devghor\TikCmsApi\Http\Controllers;
+use Devghor\TikCmsApi\Models\GoogleTagContent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

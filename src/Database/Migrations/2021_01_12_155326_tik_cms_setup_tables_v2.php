@@ -40,7 +40,7 @@ class TikCmsSetupTablesV2 extends Migration
         if(Schema::hasTable('tik_cms_blogs')){
             if(!Schema::hasColumn('tik_cms_blogs','category')) {
                 Schema::table('tik_cms_blogs', function(Blueprint $table) {
-                    $table->string('category')->unsigned();
+                    $table->string('category');
                     $table->foreign('category')->references('id')->on('tik_cms_blog_categories');
                 });
             }

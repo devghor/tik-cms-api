@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Tikweb\TikCmsApi\Models\BlogPostComments;
+use Devghor\TikCmsApi\Models\BlogPostComments;
 
 
 class BlogPostCommentsController extends Controller

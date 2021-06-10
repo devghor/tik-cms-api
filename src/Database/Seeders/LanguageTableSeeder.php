@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Database\Seeders;
+namespace Devghor\TikCmsApi\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Tikweb\TikCmsApi\Models\Language;
+use Devghor\TikCmsApi\Models\Language;
 
 class LanguageTableSeeder extends Seeder
 {

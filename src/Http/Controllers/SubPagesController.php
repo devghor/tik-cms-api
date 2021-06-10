@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 
-use Tikweb\TikCmsApi\Models\SubPage;
+use Devghor\TikCmsApi\Models\SubPage;
 use Illuminate\Http\Request;
-use Tikweb\TikCmsApi\Models\WebPage;
-use Tikweb\TikCmsApi\Models\FacebookTagContent;
-use Tikweb\TikCmsApi\Models\GoogleTagContent;
-use Tikweb\TikCmsApi\Models\MetaTagContent;
+use Devghor\TikCmsApi\Models\WebPage;
+use Devghor\TikCmsApi\Models\FacebookTagContent;
+use Devghor\TikCmsApi\Models\GoogleTagContent;
+use Devghor\TikCmsApi\Models\MetaTagContent;
 
 class SubPagesController extends Controller
 {

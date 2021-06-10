@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tikweb\TikCmsApi\Http\Controllers;
+namespace Devghor\TikCmsApi\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

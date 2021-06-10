@@ -1,6 +1,6 @@
 <?php
 
-namespace Tikweb\TikCmsApi\Models;
+namespace Devghor\TikCmsApi\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

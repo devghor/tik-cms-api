@@ -1,23 +1,23 @@
 <?php
 
 
-use Tikweb\TikCmsApi\Http\Controllers\WebPageController;
+use Devghor\TikCmsApi\Http\Controllers\WebPageController;
 use Illuminate\Support\Facades\Route;
-use Tikweb\TikCmsApi\Http\Controllers\SubPagesController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogsController;
-use Tikweb\TikCmsApi\Http\Controllers\MetaTagContentController;
-use Tikweb\TikCmsApi\Http\Controllers\GoogleTagContentController;
-use Tikweb\TikCmsApi\Http\Controllers\FacebookTagContentController;
-use Tikweb\TikCmsApi\Http\Controllers\LanguageController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogCommentRepliesController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogPostReactionsController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogPostCommentsController;
-use Tikweb\TikCmsApi\Http\Controllers\PageGroupController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogCategoryController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogDefaultStyleController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogTypeController;
-use Tikweb\TikCmsApi\Http\Controllers\FileController;
-use Tikweb\TikCmsApi\Http\Controllers\BlogCategoryNameTranslationController;
+use Devghor\TikCmsApi\Http\Controllers\SubPagesController;
+use Devghor\TikCmsApi\Http\Controllers\BlogsController;
+use Devghor\TikCmsApi\Http\Controllers\MetaTagContentController;
+use Devghor\TikCmsApi\Http\Controllers\GoogleTagContentController;
+use Devghor\TikCmsApi\Http\Controllers\FacebookTagContentController;
+use Devghor\TikCmsApi\Http\Controllers\LanguageController;
+use Devghor\TikCmsApi\Http\Controllers\BlogCommentRepliesController;
+use Devghor\TikCmsApi\Http\Controllers\BlogPostReactionsController;
+use Devghor\TikCmsApi\Http\Controllers\BlogPostCommentsController;
+use Devghor\TikCmsApi\Http\Controllers\PageGroupController;
+use Devghor\TikCmsApi\Http\Controllers\BlogCategoryController;
+use Devghor\TikCmsApi\Http\Controllers\BlogDefaultStyleController;
+use Devghor\TikCmsApi\Http\Controllers\BlogTypeController;
+use Devghor\TikCmsApi\Http\Controllers\FileController;
+use Devghor\TikCmsApi\Http\Controllers\BlogCategoryNameTranslationController;
 
 Route::prefix('api/tikcms')->group(function () {
 
@@ -35,8 +35,6 @@ Route::prefix('api/tikcms')->group(function () {
     });
 
     Route::prefix('blog')->group(function () {
-        Route::get('/list', [BlogsController::class,'getAllBlogWithLanguage']);
-        Route::get('/category/list', [BlogsController::class,'getAllBlogWithLanguageAndCategory']);
         Route::get('/show/published', [BlogsController::class,'showPublishedContent']);
         Route::get('/all/published/show', [BlogsController::class,'showAllPublishedBlog']);
 
@@ -117,7 +115,6 @@ Route::prefix('api/tikcms')->group(function () {
             Route::post('/clone', [BlogsController::class,'cloneBlog']);
 
             Route::put('/info/update', [BlogsController::class,'updateInfo']);
-            Route::put('/update/feature-image', [BlogsController::class,'updateImage']);
             Route::get('/seo/tag/info', [BlogsController::class,'individualPageTags']);
 
             Route::prefix('type')->group(function () {
