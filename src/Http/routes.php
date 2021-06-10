@@ -35,6 +35,8 @@ Route::prefix('api/tikcms')->group(function () {
     });
 
     Route::prefix('blog')->group(function () {
+        Route::get('/list', [BlogsController::class,'getAllBlogWithLanguage']);
+        Route::get('/category/list', [BlogsController::class,'getAllBlogWithLanguageAndCategory']);
         Route::get('/show/published', [BlogsController::class,'showPublishedContent']);
         Route::get('/all/published/show', [BlogsController::class,'showAllPublishedBlog']);
 
@@ -115,6 +117,7 @@ Route::prefix('api/tikcms')->group(function () {
             Route::post('/clone', [BlogsController::class,'cloneBlog']);
 
             Route::put('/info/update', [BlogsController::class,'updateInfo']);
+            Route::put('/update/feature-image', [BlogsController::class,'updateImage']);
             Route::get('/seo/tag/info', [BlogsController::class,'individualPageTags']);
 
             Route::prefix('type')->group(function () {
