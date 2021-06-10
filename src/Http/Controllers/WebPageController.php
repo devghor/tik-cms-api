@@ -1,12 +1,12 @@
 <?php
 
-namespace Devghor\TikCmsApi\Http\Controllers;
+namespace Tikweb\TikCmsApi\Http\Controllers;
 
-use Devghor\TikCmsApi\Models\FacebookTagContent;
-use Devghor\TikCmsApi\Models\GoogleTagContent;
-use Devghor\TikCmsApi\Models\MetaTagContent;
-use Devghor\TikCmsApi\Models\PageGroup;
-use Devghor\TikCmsApi\Models\WebPage;
+use Tikweb\TikCmsApi\Models\FacebookTagContent;
+use Tikweb\TikCmsApi\Models\GoogleTagContent;
+use Tikweb\TikCmsApi\Models\MetaTagContent;
+use Tikweb\TikCmsApi\Models\PageGroup;
+use Tikweb\TikCmsApi\Models\WebPage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 

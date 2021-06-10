@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Devghor\TikCmsApi\Http\Controllers;
+namespace Tikweb\TikCmsApi\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Devghor\TikCmsApi\Models\BlogType;
+use Tikweb\TikCmsApi\Models\BlogType;
 
 class BlogTypeController extends Controller
 {

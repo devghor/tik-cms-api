@@ -1,6 +1,6 @@
 <?php
 
-namespace Devghor\TikCmsApi\Models;
+namespace Tikweb\TikCmsApi\Models;
 
 
 use Illuminate\Database\Eloquent\Model;

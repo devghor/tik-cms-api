@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Devghor\TikCmsApi\Http\Controllers;
+namespace Tikweb\TikCmsApi\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Devghor\TikCmsApi\Models\BlogCategoryNameTranslations;
-use Devghor\TikCmsApi\Models\BlogCategories;
-use Devghor\TikCmsApi\Models\Language;
+use Tikweb\TikCmsApi\Models\BlogCategoryNameTranslations;
+use Tikweb\TikCmsApi\Models\BlogCategories;
+use Tikweb\TikCmsApi\Models\Language;
 
 class BlogCategoryNameTranslationController extends Controller
 {

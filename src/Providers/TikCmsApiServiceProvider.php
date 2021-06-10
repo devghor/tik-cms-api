@@ -1,6 +1,6 @@
 <?php
 
-namespace Devghor\TikCmsApi\Providers;
+namespace Tikweb\TikCmsApi\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
