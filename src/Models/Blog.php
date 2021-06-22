@@ -25,6 +25,7 @@ class Blog extends Model
         'category',
         'type',
         'tags',
-        'url'
+        'url',
+        'slug_url'
     ];
 }
