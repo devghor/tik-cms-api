@@ -39,6 +39,8 @@ class BlogsController extends Controller
         $url = str_replace(' ', '', $url);
         $url = preg_replace('/[^a-zA-Z0-9_\/-]/s','',$url);
 
+        $slug_url = $this->createSlugUrl(trim($request->data['title']));
+
         $blog = Blog::create([
             'title'             => trim($request->data['title']),
             'short_description' => $request->data['short_description'],
@@ -46,13 +48,14 @@ class BlogsController extends Controller
             'content'           => $request->data['content'],
             'published_content' => null,
             'status'            => 'draft',
-            'author'            => "Isabella",
+            'author'            => auth()->user()->id,
             'has_changes'       => 0,
             'language'          => $request->data['language'],
             'category'          => $request->data['category'],
             'type'              => $request->data['type'],
             'tags'              => $request->data['tags'],
             'url'               => $url,
+            'slug_url'          => $slug_url,
         ]);
         if($blog) {
             $meta_tag_content = MetaTagContent::create([
@@ -74,6 +77,23 @@ class BlogsController extends Controller
         }
     }
 
+    public function createSlugUrl($title) {
+        //check if same title is already exist
+        $existing_blogs = Blog::where('title', $title)->get()->count();
+        //replace space with '-' & make lower case
+        $slug = str_replace(' ', '-', strtolower($title));
+        //check count
+        if($existing_blogs > 0) {
+            //increase number value
+            $existing_blogs +=  1;
+            //create & return slug
+            return $slug.'-'.$existing_blogs;
+        }
+        //create & return slug
+        return $slug;
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -90,6 +110,8 @@ class BlogsController extends Controller
                 $url = str_replace(' ', '', $url);
                 $url = preg_replace('/[^a-zA-Z0-9_\/-]/s','',$url);
 
+                $slug_url = $this->createSlugUrl(trim($request->data['name']));
+
                 $blog = Blog::create([
                     'title'             => $request->data['name'],
                     'short_description' => $parent_blog['short_description'],
@@ -97,12 +119,13 @@ class BlogsController extends Controller
                     'content'           => $parent_blog['content'],
                     'published_content' => null,
                     'status'            => 'draft',
-                    'author'            => "Isabella",
+                    'author'            => auth()->user()->id,
                     'category'          => $request->data['category'],
                     'type'              => $parent_blog['type'],
                     'language'          => $language,
                     'tags'              => $parent_blog['tags'],
                     'url'               => $url,
+                    'slug_url'          => $slug_url,
                 ]);
                 if($blog) {
                     $meta_tag_content = MetaTagContent::create([
@@ -186,7 +209,7 @@ class BlogsController extends Controller
 
     public function showAll()
     {
-        $blog = Blog::select('id','title', 'short_description','status', 'has_changes', 'language', 'url')
+        $blog = Blog::select('id','title', 'short_description','status', 'has_changes', 'language', 'url', 'slug_url')
             ->where('language', request()->get('language'))
             ->get();
         if($blog){
@@ -441,7 +464,7 @@ class BlogsController extends Controller
         $post_type = BlogType::select('id')->where('type_name', request()->get('post_type'))->first();
 
         if($post_type) {
-            $posts = Blog::select('id', 'title', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author')
+            $posts = Blog::select('id', 'title', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url')
                 ->where([
                     'type'  => $post_type->id,
                     'status'=> "published"
@@ -462,7 +485,7 @@ class BlogsController extends Controller
         $post_category = BlogCategories::select('id')->where('category_name', request()->get('blog_category'))->first();
 
         if($post_category) {
-            $posts = Blog::select('id', 'title', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author')
+            $posts = Blog::select('id', 'title', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url')
                 ->where([
                     'type'  => $post_category->id,
                     'status'=> "published"
@@ -481,7 +504,7 @@ class BlogsController extends Controller
 
     public function getAllBlogWithLanguage() {
 
-        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url')
+        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url', 'slug_url')
             ->where('status', 'published')
             ->get();
 
@@ -500,7 +523,7 @@ class BlogsController extends Controller
     public function getAllBlogWithLanguageAndCategory() {
 
         $category = BlogCategories::where('category_name', request()->get('category_name'))->first();
-        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url')
+        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url', 'slug_url')
             ->where('category', $category->id)
             ->where('status', 'published')
             ->get();
@@ -516,4 +539,6 @@ class BlogsController extends Controller
             return response()->json(['data' => "No blogs found"]);
         }
     }
+
+
 }
