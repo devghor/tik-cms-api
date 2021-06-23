@@ -9,6 +9,7 @@ use Devghor\TikCmsApi\Models\BlogType;
 use Devghor\TikCmsApi\Models\FacebookTagContent;
 use Devghor\TikCmsApi\Models\GoogleTagContent;
 use Devghor\TikCmsApi\Models\MetaTagContent;
+use Devghor\TikCmsApi\Data\CharacterList;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
