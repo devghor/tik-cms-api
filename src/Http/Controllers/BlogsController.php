@@ -80,8 +80,12 @@ class BlogsController extends Controller
     public function createSlugUrl($title) {
         //check if same title is already exist
         $existing_blogs = Blog::where('title', $title)->get()->count();
+
+        $translated = str_replace(array_keys(CharacterList::DATA), CharacterList::DATA, $title);
+        //remove special characters
+        $without_special_char = trim(preg_replace('/[^a-zA-Z0-9- ]/','', strtolower($translated)));
         //replace space with '-' & make lower case
-        $slug = str_replace(' ', '-', strtolower($title));
+        $slug = str_replace(' ', '-', $without_special_char);
         //check count
         if($existing_blogs > 0) {
             //increase number value
