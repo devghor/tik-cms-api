@@ -492,7 +492,7 @@ class BlogsController extends Controller
         if($post_category) {
             $posts = Blog::select('id', 'title', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url')
                 ->where([
-                    'type'  => $post_category->id,
+                    'category'  => $post_category->id,
                     'status'=> "published"
                 ])->get();
             if($posts) {
