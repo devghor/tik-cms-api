@@ -214,7 +214,7 @@ class BlogsController extends Controller
 
     public function showAll()
     {
-        $blog = Blog::select('id','title', 'short_description','status', 'has_changes', 'language', 'url', 'slug_url')
+        $blog = Blog::select('id','title', 'short_description','status', 'has_changes', 'language', 'url', 'slug_url', 'category')
             ->where('language', request()->get('language'))
             ->get();
         if($blog){
@@ -297,6 +297,7 @@ class BlogsController extends Controller
                 'title'             => $request->data['name'],
                 'status'            => $request->data['status'],
                 'short_description' => $request->data['short_description'],
+                'category'          => $request->data['category'],
                 'url'               => $url
             ]);
         if($blog) {
