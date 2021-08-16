@@ -294,9 +294,10 @@ class BlogsController extends Controller
 
         $blog = Blog::where('id', request()->get('item_id'))
             ->update([
-                'title'     => $request->data['name'],
-                'status'    => $request->data['status'],
-                'url'       => $url
+                'title'             => $request->data['name'],
+                'status'            => $request->data['status'],
+                'short_description' => $request->data['short_description'],
+                'url'               => $url
             ]);
         if($blog) {
             return response()->json(['message'=>'Blog info updated.']);
