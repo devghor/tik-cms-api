@@ -155,16 +155,6 @@ class BlogsController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -188,7 +178,7 @@ class BlogsController extends Controller
      */
     public function showPublishedContent()
     {
-        $blog = Blog::select('id','title', 'published_content')
+        $blog = Blog::select('id','title', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
             ->where('id', request()->get('blog_id'))
             ->where('status','published')
             ->first();
@@ -214,7 +204,7 @@ class BlogsController extends Controller
 
     public function showAll()
     {
-        $blog = Blog::select('id','title', 'short_description','status', 'has_changes', 'language', 'url', 'slug_url', 'category')
+        $blog = Blog::select('id','title', 'author','short_description','status', 'has_changes', 'language', 'url', 'slug_url', 'category', 'published_date', 'last_edit')
             ->where('language', request()->get('language'))
             ->get();
         if($blog){
@@ -239,15 +229,20 @@ class BlogsController extends Controller
      */
     public function edit(Request $request)
     {
-        $blog = Blog::where('id', request()->get('blog_id'))
-            ->update([
+        $blog = Blog::where('id', request()->get('blog_id'))->first();
+        if (!empty($blog)) {
+            if (empty($blog->published_date)) {
+                $blog->published_date = now();
+            }
+            $blog->update([
                 'published_content' => $request->data['content'],
-                'content'           => $request->data['content'],
-                'status'            => "published",
-                'has_changes'       => 0,
+                'content' => $request->data['content'],
+                'status' => "published",
+                'published_date' => $blog->published_date,
+                'last_edit' => now(),
+                'has_changes' => 0,
             ]);
-        if($blog) {
-            return response()->json(['success'=>'blog updated']);
+            return response()->json(['success' => 'blog updated']);
         }
         else {
             return response()->json(['error'=>'something wrong!']);
@@ -471,7 +466,7 @@ class BlogsController extends Controller
         $post_type = BlogType::select('id')->where('type_name', request()->get('post_type'))->first();
 
         if($post_type) {
-            $posts = Blog::select('id', 'title', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url')
+            $posts = Blog::select('id', 'title', 'author', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url', 'published_date', 'last_edit')
                 ->where([
                     'type'  => $post_type->id,
                     'status'=> "published"
@@ -492,7 +487,8 @@ class BlogsController extends Controller
         $post_category = BlogCategories::select('id')->where('category_name', request()->get('blog_category'))->first();
 
         if($post_category) {
-            $posts = Blog::select('id', 'title', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description','published_content', 'featured_image', 'author', 'slug_url')
+            $posts = Blog::select('id', 'title', 'author', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url', 'published_date', 'last_edit')
+
                 ->where([
                     'category'  => $post_category->id,
                     'status'=> "published"
@@ -511,7 +507,7 @@ class BlogsController extends Controller
 
     public function getAllBlogWithLanguage() {
 
-        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url', 'slug_url')
+        $allBlogs = Blog::select('id','title', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
             ->where('status', 'published')
             ->get();
 
@@ -530,7 +526,7 @@ class BlogsController extends Controller
     public function getAllBlogWithLanguageAndCategory() {
 
         $category = BlogCategories::where('category_name', request()->get('category_name'))->first();
-        $allBlogs = Blog::select('id','title', 'short_description','status','published_content', 'language', 'url', 'slug_url')
+        $allBlogs = Blog::select('id','title', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
             ->where('category', $category->id)
             ->where('status', 'published')
             ->get();

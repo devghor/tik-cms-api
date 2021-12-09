@@ -26,6 +26,8 @@ class Blog extends Model
         'type',
         'tags',
         'url',
-        'slug_url'
+        'slug_url',
+        'published_date',
+        'last_edit'
     ];
 }
