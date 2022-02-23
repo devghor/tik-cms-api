@@ -19,6 +19,7 @@ class Blog extends Model
         'short_description',
         'featured_image',
         'content',
+        'published_content',
         'status',
         'author',
         'language',
