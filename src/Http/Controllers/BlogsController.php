@@ -507,9 +507,7 @@ class BlogsController extends Controller
 
     public function getAllBlogWithLanguage() {
 
-        $allBlogs = Blog::select('id','title', 'featured_image', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
-            ->where('status', 'published')
-            ->groupBy('language')
+        $allBlogs = Blog::groupBy('language')
             ->get();
 
         if($allBlogs) {
