@@ -466,7 +466,7 @@ class BlogsController extends Controller
         $post_type = BlogType::select('id')->where('type_name', request()->get('post_type'))->first();
 
         if($post_type) {
-            $posts = Blog::select('id', 'title', 'author', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url', 'published_date', 'last_edit')
+            $posts = Blog::select('id', 'title', 'featured_image', 'author', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url', 'published_date', 'last_edit')
                 ->where([
                     'type'  => $post_type->id,
                     'status'=> "published"
@@ -487,7 +487,7 @@ class BlogsController extends Controller
         $post_category = BlogCategories::select('id')->where('category_name', request()->get('blog_category'))->first();
 
         if($post_category) {
-            $posts = Blog::select('id', 'title', 'author', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url', 'published_date', 'last_edit')
+            $posts = Blog::select('id', 'title', 'featured_image', 'author', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url', 'published_date', 'last_edit')
 
                 ->where([
                     'category'  => $post_category->id,
@@ -507,34 +507,32 @@ class BlogsController extends Controller
 
     public function getAllBlogWithLanguage() {
 
-        $allBlogs = Blog::select('id','title', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
+        $allBlogs = Blog::select('id','title', 'featured_image', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
             ->where('status', 'published')
+            ->groupBy('language')
             ->get();
 
-        $blogs = $allBlogs->groupBy('language');
-        if($blogs) {
+        if($allBlogs) {
             $data = [
-                'list' => $blogs
+                'list' => $allBlogs
             ];
             return response()->json(['data' => $data]);
         }
-        else{
-            return response()->json(['data' => "No blogs found"]);
-        }
+        return response()->json(['data' => "No blogs found"]);
     }
 
     public function getAllBlogWithLanguageAndCategory() {
 
         $category = BlogCategories::where('category_name', request()->get('category_name'))->first();
-        $allBlogs = Blog::select('id','title', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
+        $allBlogs = Blog::select('id','title', 'featured_image', 'author', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
             ->where('category', $category->id)
             ->where('status', 'published')
+            ->groupBy('language')
             ->get();
 
-        $blogs = $allBlogs->groupBy('language');
-        if($blogs) {
+        if($allBlogs) {
             $data = [
-                'list' => $blogs
+                'list' => $allBlogs
             ];
             return response()->json(['data' => $data]);
         }
