@@ -507,7 +507,7 @@ class BlogsController extends Controller
 
     public function getAllBlogWithLanguage() {
 
-        $allBlogs = Blog::get()->groupBy('language')
+        $allBlogs = Blog::get()->groupBy('language');
 
         if($allBlogs) {
             $data = [
