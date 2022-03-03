@@ -204,7 +204,7 @@ class BlogsController extends Controller
 
     public function showAll()
     {
-        $blog = Blog::select('id','title', 'author', 'author_name','short_description','status', 'has_changes', 'language', 'url', 'slug_url', 'category', 'published_date', 'last_edit')
+        $blog = Blog::select('id','title', 'author', 'author_name', 'short_description','status', 'has_changes', 'language', 'url', 'slug_url', 'category', 'published_date', 'last_edit')
             ->where('language', request()->get('language'))
             ->get();
         if($blog){
@@ -293,7 +293,6 @@ class BlogsController extends Controller
                 'status'            => $request->data['status'],
                 'short_description' => $request->data['short_description'],
                 'category'          => $request->data['category'],
-                'author_name'       => $request->data['author_name'],
                 'url'               => $url
             ]);
         if($blog) {
@@ -489,8 +488,9 @@ class BlogsController extends Controller
 
         if($post_category) {
             $posts = Blog::select('id', 'title', 'featured_image', 'author', 'author_name', 'short_description', 'featured_image', 'author', 'language', 'created_at', 'short_description', 'featured_image', 'author', 'slug_url', 'published_date', 'last_edit')
+
                 ->where([
-                    'type'  => $post_category->id,
+                    'category'  => $post_category->id,
                     'status'=> "published"
                 ])->get();
             if($posts) {
