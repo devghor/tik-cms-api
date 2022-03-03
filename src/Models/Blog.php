@@ -22,6 +22,7 @@ class Blog extends Model
         'published_content',
         'status',
         'author',
+        'author_name',
         'language',
         'category',
         'type',
