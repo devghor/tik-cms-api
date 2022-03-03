@@ -510,7 +510,7 @@ class BlogsController extends Controller
         $allBlogs = Blog::where('published_date', 'last_edit')
             ->where('status', 'published')
             ->get();
-            ->groupBy('language')
+            ->groupBy('language');
             
 
 
