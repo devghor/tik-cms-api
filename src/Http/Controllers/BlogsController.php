@@ -510,11 +510,7 @@ class BlogsController extends Controller
 
         $allBlogs = Blog::select('id','title', 'featured_image', 'author', 'author_name', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
             ->where('status', 'published')
-            ->get()
-            ->groupBy('language');
-            
-
-
+            ->get();
         if($allBlogs) {
             $allBlogs = $allBlogs->groupBy('language');
             $data = [
