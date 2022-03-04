@@ -293,6 +293,7 @@ class BlogsController extends Controller
                 'status'            => $request->data['status'],
                 'short_description' => $request->data['short_description'],
                 'category'          => $request->data['category'],
+                'author_name'       => $request->data['author_name'],
                 'url'               => $url
             ]);
         if($blog) {
@@ -510,11 +511,9 @@ class BlogsController extends Controller
         $allBlogs = Blog::where('published_date', 'last_edit')
             ->where('status', 'published')
             ->get();
-            ->groupBy('language')
-            
-
 
         if($allBlogs) {
+            $allBlogs = $allBlogs->groupBy('language');
             $data = [
                 'list' => $allBlogs
             ];
@@ -529,10 +528,10 @@ class BlogsController extends Controller
         $allBlogs = Blog::select('id','title', 'featured_image', 'author', 'author_name', 'short_description','status','published_content', 'language', 'url', 'slug_url', 'published_date', 'last_edit')
             ->where('category', $category->id)
             ->where('status', 'published')
-            ->groupBy('language')
             ->get();
 
         if($allBlogs) {
+            $allBlogs = $allBlogs->groupBy('language');
             $data = [
                 'list' => $allBlogs
             ];
